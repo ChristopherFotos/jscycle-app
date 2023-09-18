@@ -23,21 +23,6 @@ const waveLoading = (trainingVariables, programLength, blockLength) => {
 					? blocks[block][name].push(newValue)
 					: blocks[block][name].push(max);
 			});
-
-			// let newWeight = blocks[block].weights[0] + weightIncrement * (week + 1);
-			// newWeight < maxWeight
-			// 	? blocks[block].weights.push(newWeight)
-			// 	: blocks[block].weights.push(maxWeight);
-
-			// let newSet = blocks[block].sets[0] + setsIncrement * (week + 1);
-			// newSet < maxSets
-			// 	? blocks[block].sets.push(newSet)
-			// 	: blocks[block].sets.push(maxSets);
-
-			// let newRep = blocks[block].reps[0] + repsIncrement * (week + 1);
-			// newRep < maxReps
-			// 	? blocks[block].reps.push(newRep)
-			// 	: blocks[block].reps.push(maxReps);
 		}
 	}
 

@@ -104,6 +104,10 @@ const deadlift = {
 	),
 };
 
-const program = programGenerator([squat, bench, deadlift], 12);
+const unfilteredProgram = programGenerator([squat, bench, deadlift], 12);
+
+const program = unfilteredProgram.map((week) => {
+	return week.filter((day) => day.length > 0);
+});
 
 export default program;

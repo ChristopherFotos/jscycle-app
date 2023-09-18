@@ -1,13 +1,22 @@
 import React from 'react';
-import Week from './Week';
 import { Link } from 'react-router-dom';
+import { Typography, List, ListItemButton, ListItemText } from '@mui/material';
+import '../App.scss';
 
 export default function Program({ program }) {
+	console.log('PROGRAM RERENDERING');
+
 	return (
 		<div>
-			{program.map((week, i) => (
-				<Link to={`/weeks/${i}`}>Week {i}</Link>
-			))}
+			<List className='program__week-list'>
+				{program.map((_week, i) => (
+					<ListItemButton divider className='program__week'>
+						<Link to={`/${i}`}>
+							<p className='program__btn-text'>Week {i}</p>
+						</Link>
+					</ListItemButton>
+				))}
+			</List>
 		</div>
 	);
 }

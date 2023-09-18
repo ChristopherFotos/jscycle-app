@@ -4,7 +4,6 @@ import program from '../program';
 import Week from './Week';
 
 function Root() {
-	console.log(program);
 	return (
 		<div className='App'>
 			{program.map((week, i) => (
