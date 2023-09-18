@@ -7,6 +7,7 @@ import Day from './components/Day';
 import { Container, Typography, Paper } from '@mui/material';
 import { useReducer } from 'react';
 import programReducer from './reducers/programReducer';
+import ProgramEditor from './components/ProgramEditor';
 
 import './App.scss';
 
@@ -18,12 +19,27 @@ function App() {
 			<ProgramContext.Provider value={program}>
 				<div className='App'>
 					<Routes>
-						<Route path='/' element={<Program program={program} />} />
-						<Route path='/:weekId' element={<Week program={program} />} />
+						<Route
+							path='/'
+							element={
+								<ProgramEditor
+									programDispatcher={programDispatcher}
+									program={program}
+								/>
+							}
+						/>
+						<Route
+							path='/program'
+							element={<Program program={programState} />}
+						/>
+						<Route path='/:weekId' element={<Week program={programState} />} />
 						<Route
 							path='/:weekId/:dayId'
 							element={
-								<Day programDispatcher={programDispatcher} program={program} />
+								<Day
+									programDispatcher={programDispatcher}
+									program={programState}
+								/>
 							}
 						/>
 						sx

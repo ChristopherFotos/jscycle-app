@@ -23,6 +23,7 @@ const programReducer = (state, action) => {
 			console.log(stateCopy[week][day][movement].setsInfo);
 		},
 	};
+	if (action.type === 'createNewProgram') return action.newProgram;
 	actions[action.type](action.set);
 	return stateCopy;
 };
