@@ -14,10 +14,6 @@ import './App.scss';
 function App() {
 	const [programState, programDispatcher] = useReducer(programReducer, program);
 
-	const json = JSON.parse(localStorage.getItem('jsCycle_program'));
-
-	console.log('PARSED ********* ', json);
-
 	useEffect(() => {
 		console.log('UE RUNNING');
 		if (localStorage.getItem('jsCycle_program')) {

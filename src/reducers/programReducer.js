@@ -24,12 +24,12 @@ const programReducer = (state, action) => {
 		},
 	};
 	if (action.type === 'createNewProgram') {
-		localStorage.setItem('jsCycle_program', '');
+		localStorage.setItem('jsCycle_program', '[]');
 		localStorage.setItem('jsCycle_program', JSON.stringify(action.newProgram));
 		return action.newProgram;
 	}
 	actions[action.type](action.set);
-	localStorage.setItem('jsCycle_program', '');
+	localStorage.setItem('jsCycle_program', '[]');
 	localStorage.setItem('jsCycle_program', JSON.stringify(stateCopy));
 	return stateCopy;
 };
