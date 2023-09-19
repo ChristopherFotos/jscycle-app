@@ -55,8 +55,6 @@ const programGenerator = (movements, length) => {
 		});
 	});
 
-	console.log('PROGRAM: ', program);
-
 	return program;
 };
 

@@ -15,7 +15,6 @@ function App() {
 	const [programState, programDispatcher] = useReducer(programReducer, program);
 
 	useEffect(() => {
-		console.log('UE RUNNING');
 		if (localStorage.getItem('jsCycle_program')) {
 			programDispatcher({
 				type: 'createNewProgram',

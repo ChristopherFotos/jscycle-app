@@ -26,7 +26,7 @@ export default function MovementEditor({
 		{ label: 'deload increment', name: 'deloadIncrement' },
 	];
 
-	const days = [0, 1, 2, 3, 4, 5, 6, 7];
+	const days = [0, 1, 2, 3, 4, 5, 6];
 
 	return (
 		<Card sx={{ p: 2, my: 2 }}>

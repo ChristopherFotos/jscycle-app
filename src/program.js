@@ -105,8 +105,6 @@ const deadlift = {
 };
 
 const WORKING_PROGRAM = [squat, bench, deadlift];
-console.log('WROKING PROGRAM GHRUIDGR', WORKING_PROGRAM);
-
 const unfilteredProgram = programGenerator([squat, bench, deadlift], 12);
 
 const program = unfilteredProgram.map((week) => {

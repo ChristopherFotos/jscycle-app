@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MovementEditor from './MovementEditor';
 import programGenerator from '../functions/programGenerator';
@@ -17,6 +17,12 @@ export default function ProgramEditor({ programDispatcher }) {
 
 		setSnackbarIsOpen(false);
 	};
+
+	useEffect(() => {
+		if (localStorage.getItem('jsCycle_program-seed')) {
+			setMovements(JSON.parse(localStorage.getItem('jsCycle_program-seed')));
+		}
+	}, []);
 
 	const handleAddMovement = () => {
 		setMovements([
@@ -109,6 +115,17 @@ export default function ProgramEditor({ programDispatcher }) {
 		});
 	};
 
+	const handleSubmit = () => {
+		setSnackbarIsOpen(true);
+		programDispatcher({
+			type: 'createNewProgram',
+			newProgram: generateProgram(),
+		});
+
+		localStorage.setItem('jsCycle_program-seed', JSON.stringify(movements));
+		console.log('SETTING LS IN PROGRAM EDITOR');
+	};
+
 	return (
 		<div>
 			{movements.map((m, i) => (
@@ -125,31 +142,26 @@ export default function ProgramEditor({ programDispatcher }) {
 				variant='contained'
 				size='large'
 				disabled={movements.length < 1}
-				onClick={() => {
-					setSnackbarIsOpen(true);
-					programDispatcher({
-						type: 'createNewProgram',
-						newProgram: generateProgram(),
-					});
-				}}>
+				onClick={handleSubmit}>
 				{movements.length
 					? 'Generate Program'
 					: 'Add a movement to get started'}
 			</Button>
 			<Fab
 				sx={{
-					position: 'absolute',
-					bottom: 20,
-					right: 20,
+					position: 'sticky',
+					bottom: 2,
+					backgroundColor: '#ff8d22',
+					left: 2,
 				}}
 				onClick={handleAddMovement}>
 				Add
 			</Fab>
 			<Snackbar
 				open={snackbarIsOpen}
-				autoHideDuration={6000}
+				autoHideDuration={2000}
 				onClose={handleSnackbarClose}
-				message='Your program has been changed!'
+				message='Your program has been updated!'
 			/>
 		</div>
 	);

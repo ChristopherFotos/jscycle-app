@@ -50,7 +50,6 @@ export default function Movement({
 								<FormControlLabel
 									control={<Checkbox checked={set.complete} />}
 									onChange={(e) => {
-										console.log('SET:', set);
 										handleCompleteSet(e, {
 											movement: movement.index,
 											set: i,
