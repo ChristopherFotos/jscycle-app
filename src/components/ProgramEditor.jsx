@@ -95,7 +95,9 @@ export default function ProgramEditor({ programDispatcher }) {
 			lengths.cycles * lengths.cycleLength
 		);
 
-		return newProgram;
+		return newProgram.map((week) => {
+			return week.filter((day) => day.length > 0);
+		});
 	};
 
 	return (

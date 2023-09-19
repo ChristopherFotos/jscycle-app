@@ -16,9 +16,9 @@ export default function Week() {
 
 	return (
 		<div>
-			<Link to='/'>
+			<Link to='/program'>
 				<Typography variant='h5' className>
-					{'<'} Back to program home
+					{'<'} Back to all weeks
 				</Typography>
 			</Link>
 
@@ -28,7 +28,10 @@ export default function Week() {
 
 			<List className='program__week-list'>
 				{program[weekId].map((day, i) => (
-					<ListItemButton divider className='program__week'>
+					<ListItemButton
+						divider
+						className='program__week'
+						key={`day-${day}${i}`}>
 						<Link to={`/${weekId}/${i}`}>
 							<ListItemText primary={`Day ${i}`}></ListItemText>
 						</Link>

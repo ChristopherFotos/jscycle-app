@@ -2,10 +2,10 @@ import ProgramContext from './context';
 import program from './program';
 import Program from './components/Program';
 import Week from './components/Week';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Day from './components/Day';
-import { Container, Typography, Paper } from '@mui/material';
-import { useReducer } from 'react';
+import { Container } from '@mui/material';
+import { useEffect, useReducer } from 'react';
 import programReducer from './reducers/programReducer';
 import ProgramEditor from './components/ProgramEditor';
 
@@ -14,9 +14,23 @@ import './App.scss';
 function App() {
 	const [programState, programDispatcher] = useReducer(programReducer, program);
 
+	const json = JSON.parse(localStorage.getItem('jsCycle_program'));
+
+	console.log('PARSED ********* ', json);
+
+	useEffect(() => {
+		console.log('UE RUNNING');
+		if (localStorage.getItem('jsCycle_program')) {
+			programDispatcher({
+				type: 'createNewProgram',
+				newProgram: JSON.parse(localStorage.getItem('jsCycle_program')),
+			});
+		}
+	}, []);
+
 	return (
 		<Container>
-			<ProgramContext.Provider value={program}>
+			<ProgramContext.Provider value={programState}>
 				<div className='App'>
 					<Routes>
 						<Route
@@ -42,7 +56,6 @@ function App() {
 								/>
 							}
 						/>
-						sx
 					</Routes>
 				</div>
 			</ProgramContext.Provider>

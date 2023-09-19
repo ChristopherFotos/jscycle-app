@@ -23,8 +23,14 @@ const programReducer = (state, action) => {
 			console.log(stateCopy[week][day][movement].setsInfo);
 		},
 	};
-	if (action.type === 'createNewProgram') return action.newProgram;
+	if (action.type === 'createNewProgram') {
+		localStorage.setItem('jsCycle_program', '');
+		localStorage.setItem('jsCycle_program', JSON.stringify(action.newProgram));
+		return action.newProgram;
+	}
 	actions[action.type](action.set);
+	localStorage.setItem('jsCycle_program', '');
+	localStorage.setItem('jsCycle_program', JSON.stringify(stateCopy));
 	return stateCopy;
 };
 
