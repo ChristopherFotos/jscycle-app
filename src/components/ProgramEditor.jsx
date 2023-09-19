@@ -94,6 +94,12 @@ export default function ProgramEditor({ programDispatcher }) {
 		setMovements(stateCopy);
 	};
 
+	const handleRemoveMovement = (index) => {
+		const stateCopy = [...movements];
+		stateCopy.splice(index, 1);
+		setMovements(stateCopy);
+	};
+
 	const generateProgram = () => {
 		const processedMovements = movements.map((m) => {
 			const copy = { ...m };
@@ -130,6 +136,7 @@ export default function ProgramEditor({ programDispatcher }) {
 		<div>
 			{movements.map((m, i) => (
 				<MovementEditor
+					handleRemoveMovement={handleRemoveMovement}
 					handleChangeMovementProperties={handleChangeMovementProperties}
 					handleChangeProgressionProperties={handleChangeProgressionProperties}
 					handleChangeMovementDays={handleChangeMovementDays}

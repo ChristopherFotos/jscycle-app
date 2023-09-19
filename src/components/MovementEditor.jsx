@@ -10,6 +10,7 @@ import {
 	AccordionDetails,
 	Slider,
 	TextField,
+	Button,
 	Fab,
 } from '@mui/material';
 
@@ -19,6 +20,7 @@ export default function MovementEditor({
 	handleChangeMovementProperties,
 	handleChangeProgressionProperties,
 	handleChangeMovementDays,
+	handleRemoveMovement,
 }) {
 	const labels = [
 		{ label: 'Starting value', name: 'startingValue' },
@@ -41,7 +43,6 @@ export default function MovementEditor({
 				label='name'
 				value={movement.name}
 			/>
-
 			<Accordion>
 				<AccordionSummary>
 					<Typography>Days</Typography>
@@ -99,6 +100,12 @@ export default function MovementEditor({
 					</Accordion>
 				);
 			})}
+			<Button
+				onClick={() => handleRemoveMovement(index)}
+				sx={{ my: 3 }}
+				variant='outlined'>
+				Remove this movement
+			</Button>
 		</Card>
 	);
 }
