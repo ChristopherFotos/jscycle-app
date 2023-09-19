@@ -8,7 +8,7 @@ import { Container } from '@mui/material';
 import { useEffect, useReducer } from 'react';
 import programReducer from './reducers/programReducer';
 import ProgramEditor from './components/ProgramEditor';
-
+import MenuBar from './components/MenuBar';
 import './App.scss';
 
 function App() {
@@ -25,37 +25,40 @@ function App() {
 	}, []);
 
 	return (
-		<Container>
-			<ProgramContext.Provider value={programState}>
-				<div className='App'>
-					<Routes>
-						<Route
-							path='/'
-							element={
-								<ProgramEditor
-									programDispatcher={programDispatcher}
-									program={program}
-								/>
-							}
-						/>
-						<Route
-							path='/program'
-							element={<Program program={programState} />}
-						/>
-						<Route path='/:weekId' element={<Week program={programState} />} />
-						<Route
-							path='/:weekId/:dayId'
-							element={
-								<Day
-									programDispatcher={programDispatcher}
-									program={programState}
-								/>
-							}
-						/>
-					</Routes>
-				</div>
-			</ProgramContext.Provider>
-		</Container>
+		<>
+			<MenuBar />
+			<Container>
+				<ProgramContext.Provider value={programState}>
+					<div className='App'>
+						<Routes>
+							<Route
+								path='/EditProgram'
+								element={
+									<ProgramEditor
+										programDispatcher={programDispatcher}
+										program={program}
+									/>
+								}
+							/>
+							<Route path='/' element={<Program program={programState} />} />
+							<Route
+								path='/weeks/:weekId'
+								element={<Week program={programState} />}
+							/>
+							<Route
+								path='/weeks/:weekId/:dayId'
+								element={
+									<Day
+										programDispatcher={programDispatcher}
+										program={programState}
+									/>
+								}
+							/>
+						</Routes>
+					</div>
+				</ProgramContext.Provider>
+			</Container>
+		</>
 	);
 }
 

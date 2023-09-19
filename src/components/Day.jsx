@@ -55,8 +55,8 @@ export default function Day({ day, dayNumber, programDispatcher }) {
 
 	return (
 		<div>
-			<Link to={`/${weekId}`}>
-				<Typography variant='h5' className>
+			<Link to={`/weeks/${weekId}`}>
+				<Typography variant='subtitle1' className>
 					{'<'} Back to week {weekId}
 				</Typography>
 			</Link>

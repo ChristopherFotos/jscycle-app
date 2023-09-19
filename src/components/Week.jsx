@@ -10,8 +10,8 @@ export default function Week() {
 
 	return (
 		<div>
-			<Link to='/program'>
-				<Typography variant='h5' className>
+			<Link to='/'>
+				<Typography variant='subtitle1' className>
 					{'<'} Back to all weeks
 				</Typography>
 			</Link>
@@ -26,7 +26,7 @@ export default function Week() {
 						divider
 						className='program__week'
 						key={`day-${day}${i}`}>
-						<Link to={`/${weekId}/${i}`}>
+						<Link to={`/weeks/${weekId}/${i}`}>
 							<ListItemText primary={`Day ${i}`}></ListItemText>
 						</Link>
 					</ListItemButton>

@@ -102,9 +102,6 @@ export default function ProgramEditor({ programDispatcher }) {
 
 	return (
 		<div>
-			<Typography variant='body1'>
-				<Link to='/program'>Go to active program</Link>
-			</Typography>
 			{movements.map((m, i) => (
 				<MovementEditor
 					handleChangeMovementProperties={handleChangeMovementProperties}
@@ -115,7 +112,7 @@ export default function ProgramEditor({ programDispatcher }) {
 				/>
 			))}
 			<Button
-				sx={{ width: '100%', height: '3rem' }}
+				sx={{ width: '100%', height: '3rem', my: '1rem' }}
 				variant='contained'
 				size='large'
 				disabled={movements.length < 1}
