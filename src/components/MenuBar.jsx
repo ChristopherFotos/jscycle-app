@@ -58,10 +58,10 @@ export default function MenuBar() {
 							open={Boolean(anchorEl)}
 							onClose={handleClose}>
 							<MenuItem>
-								<Link to='/'>Home</Link>
+								<Link to='/'>View program</Link>
 							</MenuItem>
 							<MenuItem>
-								<Link to='/EditProgram'>Make a new program</Link>
+								<Link to='/EditProgram'>Edit your program</Link>
 							</MenuItem>
 						</Menu>
 					</div>

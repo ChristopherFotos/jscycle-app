@@ -12,7 +12,7 @@ export default function Week() {
 		<div>
 			<Link to='/'>
 				<Typography sx={{ my: 3 }} variant='subtitle1' className>
-					{'<'} Back to all weeks
+					{'<'} Back to program
 				</Typography>
 			</Link>
 
