@@ -3,11 +3,20 @@ import { Link } from 'react-router-dom';
 import MovementEditor from './MovementEditor';
 import programGenerator from '../functions/programGenerator';
 import waveLoading from '../functions/waveLoading';
-import { Typography, Fab, Button } from '@mui/material';
+import { Typography, Fab, Button, Snackbar } from '@mui/material';
 
 export default function ProgramEditor({ programDispatcher }) {
 	const [movements, setMovements] = useState([]);
 	const [lengths, setLengths] = useState({ cycleLength: 4, cycles: 3 });
+	const [snackbarIsOpen, setSnackbarIsOpen] = useState(false);
+
+	const handleSnackbarClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+
+		setSnackbarIsOpen(false);
+	};
 
 	const handleAddMovement = () => {
 		setMovements([
@@ -117,6 +126,7 @@ export default function ProgramEditor({ programDispatcher }) {
 				size='large'
 				disabled={movements.length < 1}
 				onClick={() => {
+					setSnackbarIsOpen(true);
 					programDispatcher({
 						type: 'createNewProgram',
 						newProgram: generateProgram(),
@@ -135,6 +145,12 @@ export default function ProgramEditor({ programDispatcher }) {
 				onClick={handleAddMovement}>
 				Add
 			</Fab>
+			<Snackbar
+				open={snackbarIsOpen}
+				autoHideDuration={6000}
+				onClose={handleSnackbarClose}
+				message='Your program has been changed!'
+			/>
 		</div>
 	);
 }
