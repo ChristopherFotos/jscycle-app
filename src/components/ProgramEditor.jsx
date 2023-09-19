@@ -185,9 +185,7 @@ export default function ProgramEditor({ programDispatcher }) {
 				size='large'
 				disabled={movements.length < 1}
 				onClick={handleSubmit}>
-				{movements.length
-					? 'Generate Program'
-					: 'Add a movement to get started'}
+				{movements.length ? 'Update Program' : 'Add a movement to get started'}
 			</Button>
 			<Fab
 				sx={{
