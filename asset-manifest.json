@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/jscycle-app/static/css/main.e5c528e2.css",
+    "main.js": "/jscycle-app/static/js/main.b6c46986.js",
+    "static/js/787.b6f8f738.chunk.js": "/jscycle-app/static/js/787.b6f8f738.chunk.js",
+    "index.html": "/jscycle-app/index.html",
+    "main.e5c528e2.css.map": "/jscycle-app/static/css/main.e5c528e2.css.map",
+    "main.b6c46986.js.map": "/jscycle-app/static/js/main.b6c46986.js.map",
+    "787.b6f8f738.chunk.js.map": "/jscycle-app/static/js/787.b6f8f738.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e5c528e2.css",
+    "static/js/main.b6c46986.js"
+  ]
+}
