@@ -2,13 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import ProgramContext from '../context';
 import { Link, useParams } from 'react-router-dom';
-import {
-	List,
-	ListItemButton,
-	ListItemText,
-	Typography,
-	Paper,
-} from '@mui/material';
+import { List, ListItemButton, ListItemText, Typography } from '@mui/material';
 
 export default function Week() {
 	let { weekId } = useParams();
