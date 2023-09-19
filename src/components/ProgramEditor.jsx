@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import MovementEditor from './MovementEditor';
 import programGenerator from '../functions/programGenerator';
 import waveLoading from '../functions/waveLoading';
-import { Typography, Fab, Button, Snackbar } from '@mui/material';
+import { Typography, TextField, Fab, Button, Snackbar } from '@mui/material';
 
 export default function ProgramEditor({ programDispatcher }) {
 	const [movements, setMovements] = useState([]);
@@ -20,7 +20,11 @@ export default function ProgramEditor({ programDispatcher }) {
 
 	useEffect(() => {
 		if (localStorage.getItem('jsCycle_program-seed')) {
-			setMovements(JSON.parse(localStorage.getItem('jsCycle_program-seed')));
+			const programFromStorage = JSON.parse(
+				localStorage.getItem('jsCycle_program-seed')
+			);
+			setMovements(programFromStorage.movements);
+			setLengths(programFromStorage.lengths);
 		}
 	}, []);
 
@@ -128,12 +132,42 @@ export default function ProgramEditor({ programDispatcher }) {
 			newProgram: generateProgram(),
 		});
 
-		localStorage.setItem('jsCycle_program-seed', JSON.stringify(movements));
+		localStorage.setItem(
+			'jsCycle_program-seed',
+			JSON.stringify({ lengths: lengths, movements: movements })
+		);
 		console.log('SETTING LS IN PROGRAM EDITOR');
 	};
 
 	return (
 		<div>
+			<Typography sx={{ mt: 2 }} variant='h3'>
+				Program editor
+			</Typography>
+			<Typography sx={{ mt: 2 }} variant='body1'>
+				How long will your program be?
+			</Typography>
+			<TextField
+				sx={{ my: 4, mx: 1 }}
+				type='number'
+				inputProps={{ inputMode: 'numeric' }}
+				onChange={(e) =>
+					setLengths({ ...lengths, cycleLength: e.target.value })
+				}
+				label='Microcycle length'
+				value={lengths.cycleLength}
+			/>
+			<TextField
+				sx={{ my: 4, mx: 1 }}
+				type='number'
+				inputProps={{ inputMode: 'numeric' }}
+				onChange={(e) => setLengths({ ...lengths, cycles: e.target.value })}
+				label='Number of cycles'
+				value={lengths.cycles}
+			/>
+			<Typography sx={{ mt: 2 }} variant='body1'>
+				What movements will you be doing?
+			</Typography>
 			{movements.map((m, i) => (
 				<MovementEditor
 					handleRemoveMovement={handleRemoveMovement}
