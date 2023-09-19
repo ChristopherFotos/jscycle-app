@@ -170,7 +170,6 @@ export default function ProgramEditor({ programDispatcher }) {
 			</Typography>
 			{movements.map((m, i) => (
 				<MovementEditor
-					key={`editor-${m.name}${i}`}
 					handleRemoveMovement={handleRemoveMovement}
 					handleChangeMovementProperties={handleChangeMovementProperties}
 					handleChangeProgressionProperties={handleChangeProgressionProperties}
