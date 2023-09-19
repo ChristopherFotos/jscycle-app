@@ -20,7 +20,11 @@ export default function ProgramEditor({ programDispatcher }) {
 
 	useEffect(() => {
 		if (localStorage.getItem('jsCycle_program-seed')) {
-			setMovements(JSON.parse(localStorage.getItem('jsCycle_program-seed')));
+			const programFromStorage = JSON.parse(
+				localStorage.getItem('jsCycle_program-seed')
+			);
+			setMovements(programFromStorage.movements);
+			setLengths(programFromStorage.lengths);
 		}
 	}, []);
 
@@ -128,7 +132,10 @@ export default function ProgramEditor({ programDispatcher }) {
 			newProgram: generateProgram(),
 		});
 
-		localStorage.setItem('jsCycle_program-seed', JSON.stringify(movements));
+		localStorage.setItem(
+			'jsCycle_program-seed',
+			JSON.stringify({ lengths: lengths, movements: movements })
+		);
 		console.log('SETTING LS IN PROGRAM EDITOR');
 	};
 
