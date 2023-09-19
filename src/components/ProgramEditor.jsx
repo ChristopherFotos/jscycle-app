@@ -4,6 +4,7 @@ import MovementEditor from './MovementEditor';
 import programGenerator from '../functions/programGenerator';
 import waveLoading from '../functions/waveLoading';
 import { Typography, TextField, Fab, Button, Snackbar } from '@mui/material';
+import { set, get, update } from 'idb-keyval';
 
 export default function ProgramEditor({ programDispatcher }) {
 	const [movements, setMovements] = useState([]);
@@ -19,13 +20,14 @@ export default function ProgramEditor({ programDispatcher }) {
 	};
 
 	useEffect(() => {
-		if (localStorage.getItem('jsCycle_program-seed')) {
-			const programFromStorage = JSON.parse(
-				localStorage.getItem('jsCycle_program-seed')
-			);
-			setMovements(programFromStorage.movements);
-			setLengths(programFromStorage.lengths);
-		}
+		get('jsCycle_program-seed')
+			.then((programFromStorage) => {
+				setMovements(programFromStorage.movements);
+				setLengths(programFromStorage.lengths);
+			})
+			.catch((e) => {
+				console.warn('Error retrieving program from database', e);
+			});
 	}, []);
 
 	const handleAddMovement = () => {
@@ -132,11 +134,9 @@ export default function ProgramEditor({ programDispatcher }) {
 			newProgram: generateProgram(),
 		});
 
-		localStorage.setItem(
-			'jsCycle_program-seed',
-			JSON.stringify({ lengths: lengths, movements: movements })
-		);
-		console.log('SETTING LS IN PROGRAM EDITOR');
+		set('jsCycle_program-seed', { lengths: lengths, movements: movements })
+			.then((e) => console.log('Seed set successfully', e))
+			.catch((e) => console.warn('Error while setting seed', e));
 	};
 
 	return (
@@ -170,6 +170,7 @@ export default function ProgramEditor({ programDispatcher }) {
 			</Typography>
 			{movements.map((m, i) => (
 				<MovementEditor
+					key={`editor-${m.name}${i}`}
 					handleRemoveMovement={handleRemoveMovement}
 					handleChangeMovementProperties={handleChangeMovementProperties}
 					handleChangeProgressionProperties={handleChangeProgressionProperties}

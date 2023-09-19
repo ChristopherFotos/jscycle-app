@@ -10,17 +10,30 @@ import programReducer from './reducers/programReducer';
 import ProgramEditor from './components/ProgramEditor';
 import MenuBar from './components/MenuBar';
 import './App.scss';
+import { get } from 'idb-keyval';
 
 function App() {
 	const [programState, programDispatcher] = useReducer(programReducer, program);
 
 	useEffect(() => {
-		if (localStorage.getItem('jsCycle_program')) {
-			programDispatcher({
-				type: 'createNewProgram',
-				newProgram: JSON.parse(localStorage.getItem('jsCycle_program')),
+		get('jsCycle_program')
+			.then((programFromStorage) => {
+				console.log('PROG VAL: ', programFromStorage);
+				if (programFromStorage === undefined) {
+					programDispatcher({
+						type: 'createNewProgram',
+						newProgram: program,
+					});
+					return;
+				}
+				programDispatcher({
+					type: 'createNewProgram',
+					newProgram: programFromStorage,
+				});
+			})
+			.catch((e) => {
+				console.warn('Error retrieving program from database', e);
 			});
-		}
 	}, []);
 
 	return (

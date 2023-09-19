@@ -1,3 +1,5 @@
+import { set, get } from 'idb-keyval';
+
 const programReducer = (state, action) => {
 	const stateCopy = [...state];
 
@@ -16,15 +18,15 @@ const programReducer = (state, action) => {
 		},
 	};
 	if (action.type === 'createNewProgram') {
-		localStorage.removeItem('jsCycle_program');
-		localStorage.setItem('jsCycle_program', JSON.stringify(action.newProgram));
-		console.log('SETTING LS IN REDUCER');
+		set('jsCycle_program', action.newProgram)
+			.then((e) => console.log('Program updated successfuly', e))
+			.catch((e) => console.warn('Error while updating program', e));
 		return action.newProgram;
 	}
 	actions[action.type](action.set);
-	localStorage.removeItem('jsCycle_program');
-	localStorage.setItem('jsCycle_program', JSON.stringify(stateCopy));
-	console.log('SETTING LS IN REDUCER');
+	set('jsCycle_program', stateCopy)
+		.then((e) => console.log('Program updated successfuly', e))
+		.catch((e) => console.warn('Error while updating program', e));
 
 	return stateCopy;
 };

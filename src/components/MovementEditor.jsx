@@ -51,6 +51,7 @@ export default function MovementEditor({
 					<FormGroup sx={{ display: 'flex' }}>
 						{days.map((day, i) => (
 							<FormControlLabel
+								key={`field-${index}-m-${i}`}
 								control={
 									<Checkbox
 										checked={movement.days.includes(day)}
@@ -71,7 +72,7 @@ export default function MovementEditor({
 
 			{movement.progression.map((trainingVariable, i) => {
 				return (
-					<Accordion>
+					<Accordion key={`field-${trainingVariable.name}-m-${i}`}>
 						<AccordionSummary
 							aria-controls='panel1a-content'
 							id='panel1a-header'>
@@ -81,6 +82,7 @@ export default function MovementEditor({
 							{labels.map((label) => {
 								return (
 									<TextField
+										key={`field-${trainingVariable.name}-m-${i}-${label.name}`}
 										sx={{ my: 4, display: 'block' }}
 										type='number'
 										inputProps={{ inputMode: 'numeric' }}
