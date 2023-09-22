@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/jscycle-app/static/css/main.df41e395.css",
-    "main.js": "/jscycle-app/static/js/main.f81e9599.js",
+    "main.js": "/jscycle-app/static/js/main.eda4774e.js",
     "static/js/787.b6f8f738.chunk.js": "/jscycle-app/static/js/787.b6f8f738.chunk.js",
     "index.html": "/jscycle-app/index.html",
     "main.df41e395.css.map": "/jscycle-app/static/css/main.df41e395.css.map",
-    "main.f81e9599.js.map": "/jscycle-app/static/js/main.f81e9599.js.map",
+    "main.eda4774e.js.map": "/jscycle-app/static/js/main.eda4774e.js.map",
     "787.b6f8f738.chunk.js.map": "/jscycle-app/static/js/787.b6f8f738.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.df41e395.css",
-    "static/js/main.f81e9599.js"
+    "static/js/main.eda4774e.js"
   ]
 }
