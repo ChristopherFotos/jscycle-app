@@ -68,6 +68,15 @@ export function makeLabeledData(labels, dataForLineChart, filters) {
 
 	filters.movements.forEach((movement) => {
 		filters.trainingVariables.forEach((tv) => {
+			if (!dataForLineChart[movement]) return;
+			console.log(
+				'MOVEMENT: ',
+				movement,
+				'TV: ',
+				tv,
+				'COMBINED:',
+				dataForLineChart[movement][tv]
+			);
 			labeledData.datasets.push({
 				label: `${movement} ${tv}`,
 				data: dataForLineChart[movement][tv],
@@ -76,22 +85,6 @@ export function makeLabeledData(labels, dataForLineChart, filters) {
 			});
 		});
 	});
-
-	// filters.movements.forEach((movement) => {
-	// 	console.log('THE KEEEYYY5665', movement);
-
-	// 	for (const filterKey in filters) {
-	// 		filters[filterKey].forEach((filter) => {
-	// 			console.log('Filter Key', filterKey, 'MOVEMENT', movement);
-	// 			labeledData.datasets.push({
-	// 				label: `${movement} ${filter}`,
-	// 				data: dataForLineChart[movement][filter],
-	// 				borderColor: makeRandomColors().rgb,
-	// 				backgroundColor: makeRandomColors().rgba,
-	// 			});
-	// 		});
-	// 	}
-	// });
 
 	console.log('LABLED', labeledData);
 

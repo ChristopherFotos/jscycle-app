@@ -44,6 +44,29 @@ export default function Program({ program }) {
 		);
 	}, [program, activeFilters]);
 
+	const toggleFilters = (filter, filterType) => {
+		filterType === 'movements' &&
+			setActiveFilters({
+				...activeFilters,
+				movements: _.xor(activeFilters[filterType], [filter]),
+			});
+		filterType === 'trainingVariables' &&
+			setActiveFilters({
+				...activeFilters,
+				trainingVariables: _.xor(activeFilters[filterType], [filter]),
+			});
+	};
+
+	const getButtonVariant = (filter) => {
+		if (
+			activeFilters.movements.includes(filter) ||
+			activeFilters.trainingVariables.includes(filter)
+		)
+			return 'contained';
+
+		return 'outlined';
+	};
+
 	return (
 		<div className='weeks'>
 			<Accordion sx={{ my: '3' }}>
@@ -66,16 +89,26 @@ export default function Program({ program }) {
 				<Line options={options} data={lineChartData} height={200} width={100} />
 			)}
 			<Typography>Filter by movement:</Typography>
-			{filters.movements.map((k) => (
-				<Button variant='outlined' sx={{ m: 1 }}>
-					{k}
+			{filters.movements.map((movement) => (
+				<Button
+					variant={getButtonVariant(movement)}
+					sx={{ m: 1 }}
+					onClick={() => {
+						toggleFilters(movement, 'movements');
+					}}>
+					{movement}
 				</Button>
 			))}
 			<Typography>Filter by training variable:</Typography>
 
-			{filters.trainingVariables.map((k) => (
-				<Button variant='outlined' sx={{ m: 1 }}>
-					{k}
+			{filters.trainingVariables.map((tv) => (
+				<Button
+					onClick={() => {
+						toggleFilters(tv, 'trainingVariables');
+					}}
+					variant={getButtonVariant(tv)}
+					sx={{ m: 1 }}>
+					{tv}
 				</Button>
 			))}
 			<Link to={`/EditProgram`}>
