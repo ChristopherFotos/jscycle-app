@@ -1,6 +1,6 @@
 import ProgramContext from './context';
 import program from './program';
-import Program from './components/Program';
+import Program from './components/Program/Program';
 import Week from './components/Week';
 import { Route, Routes } from 'react-router-dom';
 import Day from './components/Day';
@@ -18,7 +18,6 @@ function App() {
 	useEffect(() => {
 		get('jsCycle_program')
 			.then((programFromStorage) => {
-				console.log('PROG VAL: ', programFromStorage);
 				if (programFromStorage === undefined) {
 					programDispatcher({
 						type: 'createNewProgram',
